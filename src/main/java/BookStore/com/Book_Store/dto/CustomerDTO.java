@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-
+//Data Transfer Object for customer-related data sent to the client
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

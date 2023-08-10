@@ -1,5 +1,6 @@
 package BookStore.com.Book_Store.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ import java.util.Collection;
 public class Customer implements UserDetails {
     @Id
     @GeneratedValue
+    @JsonProperty("customer_id")
     private long id;
     private String name;
     private String email;

@@ -1,5 +1,6 @@
 package BookStore.com.Book_Store.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -22,8 +23,11 @@ import java.util.Collection;
 public class Admin implements UserDetails {
     @Id
     @GeneratedValue
+    @JsonProperty("admin_id")
     private Long id;
+    @JsonProperty("first_name")
     private String firstName;
+    @JsonProperty("last_name")
     private String lastName;
     private String email;
     private String password;

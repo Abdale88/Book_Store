@@ -8,6 +8,7 @@ CREATE TABLE customer(
     customer_id serial NOT NULL,
     name varchar(50) NOT NULL,
     email varchar(50) UNIQUE NOT NULL,
+    password varchar(50) NOT NULL,
     address varchar(50) NOT NULL,
     balance NUMERIC(10, 2),
     role varchar(50) NOT NULL,

@@ -1,63 +1,69 @@
 package BookStore.com.Book_Store.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import java.math.BigDecimal;
+import java.util.Collection;
 
-public class Customer {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@Table(name = "customer")
+public class Customer implements UserDetails {
+    @Id
+    @GeneratedValue
     private long id;
     private String name;
     private String email;
+    private String password;
     private String address;
     private BigDecimal balance;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public Customer(){}
 
-    public Customer(long id, String name, String email, String address, BigDecimal balance) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.address = address;
-        this.balance = balance;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getAuthorities();
     }
 
-    public long getId() {
-        return id;
+    @Override
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
+    @Override
+    public String getUsername() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getAddress() {
-        return address;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
 
     @Override
     public String toString() {
